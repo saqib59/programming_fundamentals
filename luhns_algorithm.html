@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    function verify_card_no(){  
+        let card_no = prompt("Please enter card no", "");
+
+        // let card_no = "4003600000000014"; // visa
+        // let card_no = "5553042241984105"; // master
+        let multiply_by_2 = "";
+        let sum = "";
+        let evens = "";
+        let visa = new RegExp('^4[0-9]{12}(?:[0-9]{3})?$');
+        let mastercard = new RegExp('^5[1-5][0-9]{14}$');
+
+        if(card_no.length < 15 || card_no.length > 16){
+            alert("invalid card");
+            return;
+        }
+        for (let index = 0; index < card_no.length; index++) {
+            if(index % 2 == 0) {
+                multiply_by_2 += card_no[index]*2;
+            }
+            else {
+                evens += card_no[index];
+            }
+        }
+        // sum of multiples of odd no in a card
+            sum_of_multiples = multiply_by_2
+                .split('')
+                .map(Number)
+                .reduce((a,b) => a + b);
+
+        // sum of even no in a card and adding it with sum of multiples off odd
+            even_sum = evens
+                .split('')
+                .map(Number)
+                .reduce((a,b) => a + b);
+
+            check_sum = (even_sum + sum_of_multiples) % 10;
+            if(check_sum == 0){
+                if (visa.test(card_no)) {
+                    alert("VISA"); 
+                }
+                else if(mastercard.test(card_no)){
+                    alert("MASTER CARD"); 
+                }
+                else{
+                    alert("invalid"); 
+                }
+            }
+            else{
+                alert("invalid card");
+            }
+    }
+
+    verify_card_no();
+
+</script>
+</html>
