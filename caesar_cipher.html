@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function caesarCipher(text, shift){
+        let result = "";
+        for (let index = 0; index < text.length; index++) {
+            if(text[index] == text[index].toUpperCase()){
+                let shiftText =  String.fromCharCode((text[index].charCodeAt(0) + shift-65) % 26 + 65);
+                result += shiftText;
+            }
+            else{
+                let shiftText = String.fromCharCode((text[index].charCodeAt(0) + shift-97) %26 + 97);
+                result+= shiftText;
+            }
+           
+        }
+        console.log(result);
+    }
+
+    caesarCipher("saqib",25);
+</script>
+</html>
